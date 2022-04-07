@@ -3,10 +3,16 @@ name: CI - Compile
 on:
   push:
     branches: [ main, develop ]
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Enter tag name for test/dev image'
+        default: 'test'
 
 jobs:
   build-yocto:
-    runs-on: [self-hosted, linux, x64, yocto]
+    #runs-on: [self-hosted, linux, x64, yocto]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
       with:
